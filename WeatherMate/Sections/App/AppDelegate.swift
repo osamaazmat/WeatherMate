@@ -24,6 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           AnalyticsParameterContentType: "cont",
         ])
         
+        let userDefaults = UserDefaults.standard
+        if !userDefaults.bool(forKey: CacheManagerKeys.hasRunBefore) {
+            LoginManager.instance.logOut()
+            userDefaults.set(true, forKey: CacheManagerKeys.hasRunBefore)
+        }
+        
         return true
     }
 

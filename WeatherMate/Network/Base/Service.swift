@@ -7,10 +7,10 @@
 
 import Foundation
 import Alamofire
-import NotificationBannerSwift
 
 enum NetworkConnnectionError: Error {
     case notConnected
+    case failedToDecode
 }
 
 public protocol NetworkServiceProtocol: AnyObject {
@@ -41,10 +41,8 @@ class NetworkService: NetworkServiceProtocol {
                     
                 } catch let error {
                     print(error.localizedDescription)
-                    let banner = FloatingNotificationBanner(title: "Error", subtitle: error.localizedDescription, style: .warning)
-                    banner.show()
-                    let error = NSError(domain: "", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
-                    completion(.failure(error))
+                    BannerManager.instance.showBanner(title: AppStrings.Banner.Title.error, message: error.localizedDescription)
+                    completion(.failure(NetworkConnnectionError.failedToDecode))
                 }
                 print("*****************************")
             }
@@ -52,8 +50,7 @@ class NetworkService: NetworkServiceProtocol {
         } else {
             completion(.failure(NetworkConnnectionError.notConnected))
             LoaderManager.instance.hide()
-            let banner = FloatingNotificationBanner(title: "Error", subtitle: "Internet Not Connected", style: .warning)
-            banner.show()
+            BannerManager.instance.showBanner(title: AppStrings.Banner.Title.error, message: AppStrings.Banner.Body.internetNotConnected)
         }
     }
 }

@@ -24,6 +24,22 @@ class HomeViewController: BaseViewController {
     
     var weatherDataRecieved: Bool = false
     
+    // MARK: ViewModel
+    var viewModel: HomeViewModelProtocol! {
+        didSet {
+            viewModel.weatherDidChange = { [unowned self] viewModel in
+                DispatchQueue.main.async {
+                    if let weatherModel = viewModel.weatherModel {
+                        self.setupData(with: weatherModel)
+                    }
+                    self.weatherDataRecieved = true
+                    self.scrollView.refreshControl?.endRefreshing()
+                    LoaderManager.instance.hide()
+                }
+            }
+        }
+    }
+    
     // MARK: ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,8 +122,6 @@ extension HomeViewController {
         } else {
             humidityLabel.text = "--"
         }
-        
-       
     }
 }
 
@@ -124,27 +138,7 @@ extension HomeViewController {
             LoaderManager.instance.show()
         }
         
-        NetworkService.default.execute(WeatherAPIs.getWeatherData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,daily"), model: WeatherModel.self) { [weak self] result in
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                LoaderManager.instance.hide()
-                self?.scrollView.refreshControl?.endRefreshing()
-            }
-            
-            guard let strongSelf = self else {
-                return
-            }
-
-            switch result {
-            case .success(let response):
-                DispatchQueue.main.async {
-                    strongSelf.weatherDataRecieved = true
-                    strongSelf.setupData(with: response)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        self.viewModel.getWeatherData(with: currentLocation)
     }
 }
 

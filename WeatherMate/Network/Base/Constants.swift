@@ -30,4 +30,16 @@ enum AppStrings {
         static let alreadyHaveAnAccount = "Already have an account? Login!"
         static let dontHaveAnAccount = "Dont have an account? Signup!"
     }
+    
+    enum Banner {
+        enum Title {
+            static let error = "Error"
+            static let invalidData = "Invalid Data"
+        }
+        
+        enum Body {
+            static let invalidData = "Please enter information in correct format"
+            static let internetNotConnected = "Internet Not Connected"
+        }
+    }
 }

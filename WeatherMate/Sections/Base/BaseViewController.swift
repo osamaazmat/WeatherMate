@@ -7,7 +7,6 @@
 
 import UIKit
 import CoreLocation
-import NotificationBannerSwift
 
 class BaseViewController: UIViewController {
 

@@ -104,6 +104,30 @@
 		BF847952284398FC0003712E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF847950284398FC0003712E /* BaseViewController.swift */; };
 		BF847953284398FC0003712E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF847950284398FC0003712E /* BaseViewController.swift */; };
 		BF8479552843A50F0003712E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8479542843A50F0003712E /* Reachability.swift */; };
+		BF84795828440F730003712E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795728440F730003712E /* LoginViewModel.swift */; };
+		BF84795A28440F830003712E /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795928440F830003712E /* LoginContract.swift */; };
+		BF84795C284416760003712E /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795B284416750003712E /* ViewControllerFactory.swift */; };
+		BF84795D284416760003712E /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795B284416750003712E /* ViewControllerFactory.swift */; };
+		BF84795E284416760003712E /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795B284416750003712E /* ViewControllerFactory.swift */; };
+		BF84796028441B8C0003712E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8478CF2840CCB50003712E /* LoginViewController.swift */; };
+		BF84796128441B8C0003712E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8478CF2840CCB50003712E /* LoginViewController.swift */; };
+		BF84796228441B950003712E /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795928440F830003712E /* LoginContract.swift */; };
+		BF84796328441B950003712E /* LoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84795928440F830003712E /* LoginContract.swift */; };
+		BF84796528441C130003712E /* BannerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84796428441C130003712E /* BannerManager.swift */; };
+		BF84796628441C130003712E /* BannerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84796428441C130003712E /* BannerManager.swift */; };
+		BF84796728441C130003712E /* BannerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84796428441C130003712E /* BannerManager.swift */; };
+		BF84796D28441F290003712E /* HomeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84796C28441F290003712E /* HomeContract.swift */; };
+		BF84796E28441F290003712E /* HomeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84796C28441F290003712E /* HomeContract.swift */; };
+		BF84796F28441F290003712E /* HomeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84796C28441F290003712E /* HomeContract.swift */; };
+		BF84797128441F530003712E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797028441F530003712E /* HomeViewModel.swift */; };
+		BF84797228441F530003712E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797028441F530003712E /* HomeViewModel.swift */; };
+		BF84797328441F530003712E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797028441F530003712E /* HomeViewModel.swift */; };
+		BF84797528442B4F0003712E /* WeeklyForecastContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797428442B4F0003712E /* WeeklyForecastContract.swift */; };
+		BF84797628442B4F0003712E /* WeeklyForecastContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797428442B4F0003712E /* WeeklyForecastContract.swift */; };
+		BF84797728442B4F0003712E /* WeeklyForecastContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797428442B4F0003712E /* WeeklyForecastContract.swift */; };
+		BF84797928442DAA0003712E /* WeeklyForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797828442DAA0003712E /* WeeklyForecastViewModel.swift */; };
+		BF84797A28442DAA0003712E /* WeeklyForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797828442DAA0003712E /* WeeklyForecastViewModel.swift */; };
+		BF84797B28442DAA0003712E /* WeeklyForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF84797828442DAA0003712E /* WeeklyForecastViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +204,14 @@
 		BF847948284392CA0003712E /* ProfileSettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsTableViewCell.xib; sourceTree = "<group>"; };
 		BF847950284398FC0003712E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BF8479542843A50F0003712E /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		BF84795728440F730003712E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BF84795928440F830003712E /* LoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContract.swift; sourceTree = "<group>"; };
+		BF84795B284416750003712E /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		BF84796428441C130003712E /* BannerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerManager.swift; sourceTree = "<group>"; };
+		BF84796C28441F290003712E /* HomeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContract.swift; sourceTree = "<group>"; };
+		BF84797028441F530003712E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		BF84797428442B4F0003712E /* WeeklyForecastContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastContract.swift; sourceTree = "<group>"; };
+		BF84797828442DAA0003712E /* WeeklyForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyForecastViewModel.swift; sourceTree = "<group>"; };
 		D075FB74714F5511C4784E8D /* Pods-WeatherMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherMate.release.xcconfig"; path = "Target Support Files/Pods-WeatherMate/Pods-WeatherMate.release.xcconfig"; sourceTree = "<group>"; };
 		D26D9A8156F7A7A6FB41A438 /* Pods_WeatherMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3EA9D733F112957A056CA4E /* Pods_WeatherMate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherMate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,8 +322,7 @@
 		BF8478C72840CBC00003712E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				BF84793C28436FF70003712E /* User */,
-				BF8478CC2840CBFC0003712E /* Weather */,
+				BF84796B28441F0C0003712E /* Model */,
 				BF8478CB2840CBF50003712E /* Base */,
 			);
 			path = Network;
@@ -300,6 +331,7 @@
 		BF8478C82840CBC00003712E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BF84795F2844167B0003712E /* Factories */,
 				BF847922284175A70003712E /* Managers */,
 				BF8478EE284136E20003712E /* Views */,
 				BF8478E0284134640003712E /* Extensions */,
@@ -334,7 +366,7 @@
 		BF8478CB2840CBF50003712E /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				BF8478CD2840CC010003712E /* Common */,
+				BF8478B42840BC4A0003712E /* Constants.swift */,
 				BF8478AF2840B8E60003712E /* AppSettings.swift */,
 				BF8478AD2840B8980003712E /* URLRequestBuilder+Ext.swift */,
 				BF8478AB2840B8250003712E /* URLRequestBuilder.swift */,
@@ -354,19 +386,11 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
-		BF8478CD2840CC010003712E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				BF8478B42840BC4A0003712E /* Constants.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		BF8478CE2840CCA70003712E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				BF8478CF2840CCB50003712E /* LoginViewController.swift */,
-				BF8478D02840CCB50003712E /* LoginViewController.xib */,
+				BF84796A28441EC50003712E /* View */,
+				BF84796928441EB70003712E /* ViewModel */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -374,9 +398,8 @@
 		BF8478D72840DB380003712E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				BF84796828441EA40003712E /* ViewModel */,
 				BF8478E5284134CC0003712E /* View */,
-				BF8478D82840DB520003712E /* HomeViewController.swift */,
-				BF8478D92840DB520003712E /* HomeViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -418,7 +441,7 @@
 		BF8478F828413F460003712E /* Weekly */ = {
 			isa = PBXGroup;
 			children = (
-				BF84790228413FB40003712E /* Controller */,
+				BF84790228413FB40003712E /* ViewModel */,
 				BF84790128413FAE0003712E /* View */,
 			);
 			path = Weekly;
@@ -433,19 +456,21 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BF84790228413FB40003712E /* Controller */ = {
+		BF84790228413FB40003712E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				BF8478F928413F680003712E /* WeeklyForecastViewController.swift */,
 				BF8478FA28413F680003712E /* WeeklyForecastViewController.xib */,
+				BF84797428442B4F0003712E /* WeeklyForecastContract.swift */,
+				BF84797828442DAA0003712E /* WeeklyForecastViewModel.swift */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BF84790B284153F10003712E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				BF847915284159340003712E /* Controller */,
+				BF847915284159340003712E /* ViewModel */,
 				BF8479142841592F0003712E /* View */,
 			);
 			path = Settings;
@@ -462,13 +487,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		BF847915284159340003712E /* Controller */ = {
+		BF847915284159340003712E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				BF84790C284154050003712E /* SettingsViewController.swift */,
 				BF84790D284154050003712E /* SettingsViewController.xib */,
 			);
-			path = Controller;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BF847922284175A70003712E /* Managers */ = {
@@ -480,6 +505,7 @@
 				BF8479382842261D0003712E /* WeatherManager.swift */,
 				BF847943284376CE0003712E /* LoginManager.swift */,
 				BF8479542843A50F0003712E /* Reachability.swift */,
+				BF84796428441C130003712E /* BannerManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -506,6 +532,52 @@
 				BF847950284398FC0003712E /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		BF84795F2844167B0003712E /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				BF84795B284416750003712E /* ViewControllerFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		BF84796828441EA40003712E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF8478D82840DB520003712E /* HomeViewController.swift */,
+				BF8478D92840DB520003712E /* HomeViewController.xib */,
+				BF84796C28441F290003712E /* HomeContract.swift */,
+				BF84797028441F530003712E /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BF84796928441EB70003712E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BF8478CF2840CCB50003712E /* LoginViewController.swift */,
+				BF8478D02840CCB50003712E /* LoginViewController.xib */,
+				BF84795728440F730003712E /* LoginViewModel.swift */,
+				BF84795928440F830003712E /* LoginContract.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BF84796A28441EC50003712E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF84796B28441F0C0003712E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF84793C28436FF70003712E /* User */,
+				BF8478CC2840CBFC0003712E /* Weather */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E0993A4E4AD9ED27A4728420 /* Frameworks */ = {
@@ -782,7 +854,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF847949284392CA0003712E /* ProfileSettingsTableViewCell.swift in Sources */,
+				BF84795C284416760003712E /* ViewControllerFactory.swift in Sources */,
 				BF8478D12840CCB50003712E /* LoginViewController.swift in Sources */,
+				BF84795828440F730003712E /* LoginViewModel.swift in Sources */,
 				BF8478AC2840B8250003712E /* URLRequestBuilder.swift in Sources */,
 				BF8478F0284139600003712E /* GradientView.swift in Sources */,
 				BF847951284398FC0003712E /* BaseViewController.swift in Sources */,
@@ -798,21 +872,27 @@
 				BF8478B02840B8E60003712E /* AppSettings.swift in Sources */,
 				BF8478792840B33B0003712E /* AppDelegate.swift in Sources */,
 				BF8478B32840BA640003712E /* AppURLs.swift in Sources */,
+				BF84797128441F530003712E /* HomeViewModel.swift in Sources */,
+				BF84797928442DAA0003712E /* WeeklyForecastViewModel.swift in Sources */,
 				BF8478BA2840C0A10003712E /* WeatherAPIs.swift in Sources */,
 				BF8478B72840BC930003712E /* Service.swift in Sources */,
 				BF84790528413FE00003712E /* WeeklyForecastTableViewCell.swift in Sources */,
 				BF84793E284370030003712E /* UserModel.swift in Sources */,
 				BF84791F284168BB0003712E /* ForecastModel.swift in Sources */,
+				BF84796D28441F290003712E /* HomeContract.swift in Sources */,
+				BF84795A28440F830003712E /* LoginContract.swift in Sources */,
 				BF84792C2842077B0003712E /* LoaderManager.swift in Sources */,
 				BF847930284209850003712E /* UIApplication+Ext.swift in Sources */,
 				BF84787B2840B33B0003712E /* SceneDelegate.swift in Sources */,
 				BF8478EB284136DD0003712E /* VariableCornerRadiusView.swift in Sources */,
 				BF8478AE2840B8980003712E /* URLRequestBuilder+Ext.swift in Sources */,
 				BF8478E7284136BA0003712E /* UIBezierPath+Ext.swift in Sources */,
+				BF84797528442B4F0003712E /* WeeklyForecastContract.swift in Sources */,
 				BF8478B52840BC4A0003712E /* Constants.swift in Sources */,
 				BF847918284159560003712E /* SettingsTableViewCell.swift in Sources */,
 				BF8479552843A50F0003712E /* Reachability.swift in Sources */,
 				BF8478DA2840DB520003712E /* HomeViewController.swift in Sources */,
+				BF84796528441C130003712E /* BannerManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,10 +903,17 @@
 				BF8478902840B33E0003712E /* WeatherMateTests.swift in Sources */,
 				BF8478E8284136BA0003712E /* UIBezierPath+Ext.swift in Sources */,
 				BF8478F1284139600003712E /* GradientView.swift in Sources */,
+				BF84795D284416760003712E /* ViewControllerFactory.swift in Sources */,
+				BF84796028441B8C0003712E /* LoginViewController.swift in Sources */,
+				BF84797228441F530003712E /* HomeViewModel.swift in Sources */,
+				BF84796628441C130003712E /* BannerManager.swift in Sources */,
+				BF84796E28441F290003712E /* HomeContract.swift in Sources */,
 				BF8478F628413D860003712E /* TabBar.swift in Sources */,
 				BF847931284209850003712E /* UIApplication+Ext.swift in Sources */,
+				BF84797A28442DAA0003712E /* WeeklyForecastViewModel.swift in Sources */,
 				BF84792D2842077B0003712E /* LoaderManager.swift in Sources */,
 				BF8478DB2840DB520003712E /* HomeViewController.swift in Sources */,
+				BF84796228441B950003712E /* LoginContract.swift in Sources */,
 				BF847952284398FC0003712E /* BaseViewController.swift in Sources */,
 				BF84790628413FE00003712E /* WeeklyForecastTableViewCell.swift in Sources */,
 				BF8478EC284136DD0003712E /* VariableCornerRadiusView.swift in Sources */,
@@ -835,6 +922,7 @@
 				BF84793A2842261D0003712E /* WeatherManager.swift in Sources */,
 				BF847920284168BB0003712E /* ForecastModel.swift in Sources */,
 				BF847919284159560003712E /* SettingsTableViewCell.swift in Sources */,
+				BF84797628442B4F0003712E /* WeeklyForecastContract.swift in Sources */,
 				BF84793F284370060003712E /* UserModel.swift in Sources */,
 				BF84790F284154050003712E /* SettingsViewController.swift in Sources */,
 			);
@@ -844,20 +932,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF84797728442B4F0003712E /* WeeklyForecastContract.swift in Sources */,
 				BF8478ED284136DD0003712E /* VariableCornerRadiusView.swift in Sources */,
+				BF84797B28442DAA0003712E /* WeeklyForecastViewModel.swift in Sources */,
+				BF84796F28441F290003712E /* HomeContract.swift in Sources */,
 				BF84789C2840B33E0003712E /* WeatherMateUITestsLaunchTests.swift in Sources */,
 				BF84790728413FE00003712E /* WeeklyForecastTableViewCell.swift in Sources */,
 				BF847910284154050003712E /* SettingsViewController.swift in Sources */,
 				BF8478F2284139600003712E /* GradientView.swift in Sources */,
 				BF847953284398FC0003712E /* BaseViewController.swift in Sources */,
+				BF84795E284416760003712E /* ViewControllerFactory.swift in Sources */,
 				BF8478E9284136BA0003712E /* UIBezierPath+Ext.swift in Sources */,
+				BF84796128441B8C0003712E /* LoginViewController.swift in Sources */,
 				BF84792E2842077B0003712E /* LoaderManager.swift in Sources */,
 				BF84791A284159560003712E /* SettingsTableViewCell.swift in Sources */,
 				BF8478FD28413F680003712E /* WeeklyForecastViewController.swift in Sources */,
 				BF84789A2840B33E0003712E /* WeatherMateUITests.swift in Sources */,
+				BF84796328441B950003712E /* LoginContract.swift in Sources */,
 				BF847940284370060003712E /* UserModel.swift in Sources */,
 				BF84794B284392CB0003712E /* ProfileSettingsTableViewCell.swift in Sources */,
 				BF847932284209850003712E /* UIApplication+Ext.swift in Sources */,
+				BF84796728441C130003712E /* BannerManager.swift in Sources */,
+				BF84797328441F530003712E /* HomeViewModel.swift in Sources */,
 				BF8478DC2840DB520003712E /* HomeViewController.swift in Sources */,
 				BF84793B2842261D0003712E /* WeatherManager.swift in Sources */,
 				BF847921284168BB0003712E /* ForecastModel.swift in Sources */,

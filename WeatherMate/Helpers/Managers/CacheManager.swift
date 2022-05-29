@@ -8,9 +8,10 @@
 import Foundation
 import SwiftKeychainWrapper
 
-fileprivate enum CacheManagerKeys {
+enum CacheManagerKeys {
     static let email: String = "WM_Email"
     static let password: String = "WM_Password"
+    static let hasRunBefore: String = "WM_RunBefore"
 }
 
 class CacheManager {

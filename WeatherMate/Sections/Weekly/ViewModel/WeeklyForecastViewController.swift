@@ -15,7 +15,20 @@ class WeeklyForecastViewController: BaseViewController {
     @IBOutlet weak var mainImageView: UIImageView!
     
     var weatherDataRecieved: Bool = false
-    var forecastModel: ForecastModel!
+    
+    // MARK: ViewModel
+    var viewModel: WeeklyForecastViewModelProtocol! {
+        didSet {
+            viewModel.forecastDidChange = { [unowned self] viewModel in
+                DispatchQueue.main.async {
+                    self.weatherDataRecieved = true
+                    self.tableView.refreshControl?.endRefreshing()
+                    LoaderManager.instance.hide()
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
     
     // MARK: LifeCycle
     override func viewDidLoad() {
@@ -64,28 +77,7 @@ extension WeeklyForecastViewController {
             LoaderManager.instance.show()
         }
         
-        NetworkService.default.execute(WeatherAPIs.getForecastData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,minutely"), model: ForecastModel.self) { [weak self] result in
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                LoaderManager.instance.hide()
-                self?.tableView.refreshControl?.endRefreshing()
-            }
-            
-            
-            guard let self = self else {
-                return
-            }
-
-            switch result {
-            case .success(let response):
-                DispatchQueue.main.async {
-                    self.forecastModel = response
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+        self.viewModel.getWeeklyWeatherData(with: currentLocation)
     }
 }
 
@@ -102,7 +94,7 @@ extension WeeklyForecastViewController {
 // MARK: TableView Delegate & DataSource
 extension WeeklyForecastViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let forecastModel = forecastModel {
+        if let forecastModel = self.viewModel.forecastModel {
             return forecastModel.daily?.count ?? 0
         } else {
             return 0
@@ -113,7 +105,8 @@ extension WeeklyForecastViewController: UITableViewDelegate, UITableViewDataSour
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeeklyForecastTableViewCell.cellReuseIdentifier, for: indexPath) as? WeeklyForecastTableViewCell else {
             return UITableViewCell()
         }
-        if let daily = forecastModel.daily {
+        
+        if let forecastModel = self.viewModel.forecastModel, let daily = forecastModel.daily {
             cell.configureCell(with: daily[indexPath.item])
         }
         

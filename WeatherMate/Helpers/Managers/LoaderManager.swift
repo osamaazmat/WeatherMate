@@ -43,6 +43,7 @@ class LoaderManager {
 
         alertVC.view.addSubview(animationView)
         animationView.center = alertVC.view.center
+        alertVC.view.bringSubviewToFront(animationView)
         animationView.play()
         
         alertVC.view.backgroundColor    = UIColor.black.withAlphaComponent(0.5)
