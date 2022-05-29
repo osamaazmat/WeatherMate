@@ -10,9 +10,6 @@ import CoreLocation
 
 class SettingsViewController: UIViewController {
 
-    let settingsArray1 = ["Name", "Location"]
-    let settingsArray2 = ["Logout"]
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImageView: UIImageView!
     
@@ -45,6 +42,7 @@ extension SettingsViewController {
     
     private func registerCells() {
         tableView.register(UINib(nibName: SettingsTableViewCell.cellNibName, bundle: nil), forCellReuseIdentifier: SettingsTableViewCell.cellReuseIdentifier)
+        tableView.register(UINib(nibName: ProfileSettingsTableViewCell.cellNibName, bundle: nil), forCellReuseIdentifier: ProfileSettingsTableViewCell.cellReuseIdentifier)
     }
 }
 
@@ -67,16 +65,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return settingsArray1.count
-        } else {
-            return settingsArray2.count
-        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "General"
+            return ""
         } else {
             return "Account"
         }
@@ -84,13 +78,44 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.cellReuseIdentifier, for: indexPath) as? SettingsTableViewCell else {
-            return UITableViewCell()
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileSettingsTableViewCell.cellReuseIdentifier, for: indexPath) as? ProfileSettingsTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            let user = CacheManager.instance.getUserData()
+            if let user = user {
+                cell.nameLabel.text = user.email
+            } else {
+                cell.nameLabel.text = "Hi, Guest!"
+            }
+           
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.cellReuseIdentifier, for: indexPath) as? SettingsTableViewCell else {
+                return UITableViewCell()
+            }
+            
+            if LoginManager.instance.isUserLoggedIn() {
+                cell.mainLabel.text = "Logout"
+            } else {
+                cell.mainLabel.text = "Login"
+            }
+          
+            return cell
         }
-        
-        let arrayOfSettings = indexPath.section == 0 ? settingsArray1 : settingsArray2
-        cell.mainLabel.text = arrayOfSettings[indexPath.item]
-        
-        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            if LoginManager.instance.isUserLoggedIn() {
+                LoginManager.instance.logOut()
+                self.tableView.reloadData()
+            } else {
+                let tabBar = LoginViewController()
+                UIApplication.shared.mainKeyWindow?.rootViewController = tabBar
+                UIApplication.shared.mainKeyWindow?.makeKeyAndVisible()
+            }
+        }
     }
 }

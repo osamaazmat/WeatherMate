@@ -27,7 +27,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         </imageView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iP4-0f-s1J">
-                            <rect key="frame" x="16" y="0.0" width="382" height="896"/>
+                            <rect key="frame" x="16" y="52" width="382" height="844"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <connections>
@@ -43,7 +43,7 @@
                         <constraint firstAttribute="trailing" secondItem="iP4-0f-s1J" secondAttribute="trailing" constant="16" id="MwA-iC-tgo"/>
                         <constraint firstAttribute="bottom" secondItem="iP4-0f-s1J" secondAttribute="bottom" id="Q5b-8A-jWn"/>
                         <constraint firstAttribute="bottom" secondItem="BSm-sx-RQl" secondAttribute="bottom" id="QHw-DF-ugz"/>
-                        <constraint firstItem="iP4-0f-s1J" firstAttribute="top" secondItem="4Iz-GM-jbx" secondAttribute="top" id="Rbi-BF-9JN"/>
+                        <constraint firstItem="iP4-0f-s1J" firstAttribute="top" secondItem="4Iz-GM-jbx" secondAttribute="topMargin" id="Rbi-BF-9JN"/>
                         <constraint firstItem="BSm-sx-RQl" firstAttribute="leading" secondItem="4Iz-GM-jbx" secondAttribute="leading" id="n0g-x8-lBd"/>
                         <constraint firstItem="BSm-sx-RQl" firstAttribute="top" secondItem="4Iz-GM-jbx" secondAttribute="top" id="r3o-vJ-2iL"/>
                     </constraints>

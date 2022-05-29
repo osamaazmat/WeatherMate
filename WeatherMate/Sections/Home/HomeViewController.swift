@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import CoreLocation
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
 
     // MARK: IBOutlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -20,13 +20,30 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var windPressureLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var minMaxTempLabel: UILabel!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
-    var currentLocation : CLLocationCoordinate2D!
+    var weatherDataRecieved: Bool = false
     
     // MARK: ViewController LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    func configureRefreshControl() {
+        scrollView.refreshControl = UIRefreshControl()
+        scrollView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+        scrollView.delegate = self
+    }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            topConstraint.constant = -scrollView.contentOffset.y/2
+        } else {
+            topConstraint.constant = 0
+        }
     }
 }
 
@@ -34,16 +51,12 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     private func setupUI() {
         setupNotificationObservers()
-        setupLocation()
-    }
-    
-    private func setupLocation() {
-        let LocationMgr = LocationManager.instance
-        LocationMgr.delegate = self
+        configureRefreshControl()
+        getWeatherData()
     }
     
     private func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(locationUpdateNotification(_:)), name: NSNotification.Name(rawValue: NotificationNames.kLocationDidChangeNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(locationUpdated(_:)), name: NSNotification.Name(rawValue: NotificationNames.kLocationDidChangeNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeather(_:)), name: NSNotification.Name(rawValue: NotificationNames.weatherDidUpdateNotification), object: nil)
     }
     
@@ -100,22 +113,33 @@ extension HomeViewController {
 
 // MARK: Api Calls
 extension HomeViewController {
-    private func getWeatherData() {
-        LoaderManager.instance.show()
-       
+    private func getWeatherData(_ isFromRefreshControl: Bool = false) {
+        
+        if currentLocation == nil {
+            LocationManager.instance.refreshLocation()
+            return
+        }
+        
+        if !isFromRefreshControl {
+            LoaderManager.instance.show()
+        }
+        
         NetworkService.default.execute(WeatherAPIs.getWeatherData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,daily"), model: WeatherModel.self) { [weak self] result in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 LoaderManager.instance.hide()
+                self?.scrollView.refreshControl?.endRefreshing()
             }
             
-            guard let self = self else {
+            guard let strongSelf = self else {
                 return
             }
 
             switch result {
             case .success(let response):
                 DispatchQueue.main.async {
-                    self.setupData(with: response)
+                    strongSelf.weatherDataRecieved = true
+                    strongSelf.setupData(with: response)
                 }
             case .failure(let error):
                 print(error)
@@ -132,24 +156,17 @@ extension HomeViewController {
     }
 }
 
-// MARK: Location
-extension HomeViewController: LocationUpdateProtocol {
+// MARK: Action Methods
+extension HomeViewController {
     
     // MARK: Notifications
-    @objc func locationUpdateNotification(_ notification: Notification) {
-        let userinfo = notification.userInfo
-        self.currentLocation = userinfo!["location"] as? CLLocationCoordinate2D
-        print("Latitude : \(self.currentLocation.latitude)")
-        print("Longitude : \(self.currentLocation.longitude)")
-
+    @objc func locationUpdated(_ notification: Notification) {
+        if !weatherDataRecieved {
+            getWeatherData()
+        }
     }
-
-    // MARK: LocationUpdateProtocol
-    func locationDidUpdateToLocation(_ location: CLLocationCoordinate2D) {
-        currentLocation = location
-        print("Latitude : \(self.currentLocation.latitude)")
-        print("Longitude : \(self.currentLocation.longitude)")
-        
-        getWeatherData()
+    
+    @objc func handleRefreshControl() {
+        self.getWeatherData(true)
     }
 }

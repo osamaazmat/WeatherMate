@@ -22,3 +22,12 @@ enum NotificationNames {
     static let kLocationDidChangeNotification = "LocationDidChangeNotification"
     static let weatherDidUpdateNotification = "WeatherDidUpdateNotification"
 }
+
+enum AppStrings {
+    enum Login {
+        static let loginButtonText = "Login"
+        static let signUpButtonText = "Sign Up"
+        static let alreadyHaveAnAccount = "Already have an account? Login!"
+        static let dontHaveAnAccount = "Dont have an account? Signup!"
+    }
+}

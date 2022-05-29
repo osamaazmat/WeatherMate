@@ -44,7 +44,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     // MARK: Private Methods
-    private func refreshLocation() {
+    func refreshLocation() {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.distanceFilter = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()

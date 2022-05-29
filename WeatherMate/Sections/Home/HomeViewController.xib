@@ -15,6 +15,8 @@
                 <outlet property="humidityLabel" destination="KbC-XT-aqe" id="lHf-Qs-GGF"/>
                 <outlet property="mainImageView" destination="BSB-mb-7RD" id="PG7-c0-w1z"/>
                 <outlet property="minMaxTempLabel" destination="Hts-QE-86c" id="ywK-qO-m3L"/>
+                <outlet property="scrollView" destination="6C6-EH-cMT" id="AhQ-nc-OuZ"/>
+                <outlet property="topConstraint" destination="cGp-iU-CLX" id="yp3-n8-2a5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weatherDescriptionLabel" destination="JhL-h3-44o" id="x1u-Vu-JiQ"/>
                 <outlet property="windDirectionLabel" destination="nFi-0U-Cfo" id="egG-Nq-342"/>

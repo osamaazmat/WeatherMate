@@ -8,13 +8,13 @@
 import UIKit
 import CoreLocation
 
-class WeeklyForecastViewController: UIViewController {
+class WeeklyForecastViewController: BaseViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImageView: UIImageView!
     
-    var currentLocation : CLLocationCoordinate2D!
+    var weatherDataRecieved: Bool = false
     var forecastModel: ForecastModel!
     
     // MARK: LifeCycle
@@ -22,13 +22,13 @@ class WeeklyForecastViewController: UIViewController {
         super.viewDidLoad()
         setupNotificationObservers()
         registerCells()
-        
-        if LocationManager.instance.currentLocation != nil {
-            currentLocation = LocationManager.instance.currentLocation
-            getWeeklyWeatherData()
-        } else {
-            setupLocation()
-        }
+        configureRefreshControl()
+        getWeeklyWeatherData()
+    }
+    
+    func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }
 }
 
@@ -40,18 +40,12 @@ extension WeeklyForecastViewController {
     }
     
     private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(locationUpdated(_:)), name: NSNotification.Name(rawValue: NotificationNames.kLocationDidChangeNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateWeather(_:)), name: NSNotification.Name(rawValue: NotificationNames.weatherDidUpdateNotification), object: nil)
     }
     
     private func registerCells() {
         tableView.register(UINib(nibName: WeeklyForecastTableViewCell.cellNibName, bundle: nil), forCellReuseIdentifier: WeeklyForecastTableViewCell.cellReuseIdentifier)
-    }
-    
-    private func setupLocation() {
-        if LocationManager.instance.currentLocation == nil {
-            let LocationMgr = LocationManager.instance
-            LocationMgr.delegate = self
-        }
     }
 }
 
@@ -59,13 +53,24 @@ extension WeeklyForecastViewController {
 extension WeeklyForecastViewController {
     
     // MARK: Get Weekly Weather Data
-    private func getWeeklyWeatherData() {
-        LoaderManager.instance.show()
+    private func getWeeklyWeatherData(_ isFromRefreshControl: Bool = false) {
+        
+        if currentLocation == nil {
+            LocationManager.instance.refreshLocation()
+            return
+        }
+        
+        if !isFromRefreshControl {
+            LoaderManager.instance.show()
+        }
         
         NetworkService.default.execute(WeatherAPIs.getForecastData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,minutely"), model: ForecastModel.self) { [weak self] result in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 LoaderManager.instance.hide()
+                self?.tableView.refreshControl?.endRefreshing()
             }
+            
             
             guard let self = self else {
                 return
@@ -116,24 +121,16 @@ extension WeeklyForecastViewController: UITableViewDelegate, UITableViewDataSour
     }
 }
 
-// MARK: Location
-extension WeeklyForecastViewController: LocationUpdateProtocol {
-    
-    // MARK: Notifications
-    @objc func locationUpdateNotification(_ notification: Notification) {
-        let userinfo = notification.userInfo
-        self.currentLocation = userinfo!["location"] as? CLLocationCoordinate2D
-        print("Latitude : \(self.currentLocation.latitude)")
-        print("Longitude : \(self.currentLocation.longitude)")
+// MARK: Action Methods
+extension WeeklyForecastViewController {
 
+    @objc func locationUpdated(_ notification: Notification) {
+        if !weatherDataRecieved {
+            getWeeklyWeatherData()
+        }
     }
-
-    // MARK: LocationUpdateProtocol
-    func locationDidUpdateToLocation(_ location: CLLocationCoordinate2D) {
-        currentLocation = location
-        print("Latitude : \(self.currentLocation.latitude)")
-        print("Longitude : \(self.currentLocation.longitude)")
-        
-        getWeeklyWeatherData()
+    
+    @objc func handleRefreshControl() {
+        self.getWeeklyWeatherData(true)
     }
 }

@@ -13,6 +13,7 @@ target 'WeatherMate' do
   pod 'FirebaseAnalytics'
   pod 'SwiftKeychainWrapper'
   pod 'lottie-ios'
+  pod 'NotificationBannerSwift'
   
   target 'WeatherMateTests' do
     inherit! :search_paths

@@ -7,6 +7,11 @@
 
 import Foundation
 import Alamofire
+import NotificationBannerSwift
+
+enum NetworkConnnectionError: Error {
+    case notConnected
+}
 
 public protocol NetworkServiceProtocol: AnyObject {
     func execute<T: Codable>(_ urlRequest: URLRequestBuilder, model: T.Type, completion: @escaping (Result<T, Error>) -> Void)
@@ -21,24 +26,34 @@ class NetworkService: NetworkServiceProtocol {
     
     func execute<T>(_ urlRequest: URLRequestBuilder, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable, T : Encodable {
         
-        let request = AF.request(urlRequest)
-        
-        request.response { [weak request] response in
-            print("*****************************")
+        if Reachability.isConnectedToNetwork() {
+            let request = AF.request(urlRequest)
             
-            request.map { debugPrint($0) }
-            let responseData = response.data ?? Data()
-            do {
-                let responseObject = try JSONDecoder().decode(T.self, from: responseData)
-                print(responseObject)
-                completion(.success(responseObject))
+            request.response { [weak request] response in
+                print("*****************************")
                 
-            } catch let error {
-                print(error.localizedDescription)
-                let error = NSError(domain: "", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
-                completion(.failure(error))
+                request.map { debugPrint($0) }
+                let responseData = response.data ?? Data()
+                do {
+                    let responseObject = try JSONDecoder().decode(T.self, from: responseData)
+                    print(responseObject)
+                    completion(.success(responseObject))
+                    
+                } catch let error {
+                    print(error.localizedDescription)
+                    let banner = FloatingNotificationBanner(title: "Error", subtitle: error.localizedDescription, style: .warning)
+                    banner.show()
+                    let error = NSError(domain: "", code: 200, userInfo: [NSLocalizedDescriptionKey: "Failed to decode response"])
+                    completion(.failure(error))
+                }
+                print("*****************************")
             }
-            print("*****************************")
+            
+        } else {
+            completion(.failure(NetworkConnnectionError.notConnected))
+            LoaderManager.instance.hide()
+            let banner = FloatingNotificationBanner(title: "Error", subtitle: "Internet Not Connected", style: .warning)
+            banner.show()
         }
     }
 }
