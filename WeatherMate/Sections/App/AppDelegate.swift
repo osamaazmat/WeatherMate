@@ -7,7 +7,6 @@
 
 import UIKit
 import FirebaseCore
-import FirebaseAnalytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-          AnalyticsParameterItemID: "id-AppStart",
-          AnalyticsParameterItemName: "AppStarted",
-          AnalyticsParameterContentType: "cont",
-        ])
+        AppAnalytics.logEvent(withName: AppTriggers.appStart)
         
         let userDefaults = UserDefaults.standard
         if !userDefaults.bool(forKey: CacheManagerKeys.hasRunBefore) {

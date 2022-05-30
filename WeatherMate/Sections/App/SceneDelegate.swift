@@ -21,9 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
         
-        let loginVC = ViewControllerFactory.makeLogin()
-        self.window?.rootViewController = loginVC
-        window?.windowScene = windowScene
+        window?.overrideUserInterfaceStyle = .light
+        
+        AppRouter.moveToLogin(withWindow: window, andWinowScene: windowScene)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

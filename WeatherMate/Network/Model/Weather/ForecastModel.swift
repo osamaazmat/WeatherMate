@@ -10,8 +10,11 @@ import Foundation
 // MARK: - ForecastModel
 struct ForecastModel: Codable, BaseModelProtocol {
     
-    func getMock() -> String {
+    static func getMockSuccess() -> String {
         return ModelMocks.forecastModel
+    }
+    static func getMockFailure() -> String {
+        return ModelMocks.forecastModelFailure
     }
     
     var lat, lon: Double?

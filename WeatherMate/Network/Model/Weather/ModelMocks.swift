@@ -8,6 +8,8 @@
 import Foundation
 
 enum ModelMocks {
+    static let weatherModelFailure = ""
+    static let forecastModelFailure = ""
     static let weatherModel =
     """
             {
@@ -55,7 +57,6 @@ enum ModelMocks {
                 "cod": 200
             }
     """
-    
     static let forecastModel =
     """
             {

@@ -40,22 +40,30 @@ class LoginViewController: BaseViewController {
     var screenType: LoginViewControllerType = .autoLogin
     
     // MARK: ViewModel
-    var viewModel: LoginViewModelProtocol! {
+    var viewModel: LoginViewModelProtocol? {
         didSet {
-            viewModel.vcTypeDidChange = { [unowned self] vcType in
+            viewModel?.vcTypeDidChange = { [weak self] vcType in
+                guard let self = self else {
+                    return
+                }
+                
                 DispatchQueue.main.async {
                     self.setupUI(as: vcType)
                 }
             }
             
-            viewModel.didReturnError = { error in
+            viewModel?.didReturnError = { error in
                 DispatchQueue.main.async {
                     LoaderManager.instance.hide()
                     BannerManager.instance.showBanner(title: AppStrings.Banner.Title.error, message: error)
                 }
             }
             
-            viewModel.loginSignupCompleted = {  [unowned self] in
+            viewModel?.loginSignupCompleted = {  [weak self] in
+                guard let self = self else {
+                    return
+                }
+                
                 DispatchQueue.main.async {
                     LoaderManager.instance.hide()
                     self.moveToHomeScreen()
@@ -67,7 +75,12 @@ class LoginViewController: BaseViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupUI(as: self.screenType)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppAnalytics.logEvent(withName: AppTriggers.loginScreen)
     }
 }
 
@@ -153,17 +166,17 @@ extension LoginViewController {
 // MARK: API Calls
 extension LoginViewController {
     func tryAutoLogin() {
-        self.viewModel.tryAutoLogin()
+        self.viewModel?.tryAutoLogin()
     }
     
     func signUp(with email: String, password: String) {
         LoaderManager.instance.show()
-        self.viewModel.signUp(with: email, password: password)
+        self.viewModel?.signUp(with: email, password: password)
     }
     
     func login(with email: String, password: String) {
         LoaderManager.instance.show()
-        self.viewModel.login(with: email, password: password)
+        self.viewModel?.login(with: email, password: password)
     }
 }
 
@@ -211,8 +224,6 @@ extension LoginViewController {
 extension LoginViewController {
     
     func moveToHomeScreen() {
-        let tabBar = ViewControllerFactory.makeTabBar()
-        UIApplication.shared.mainKeyWindow?.rootViewController = tabBar
-        UIApplication.shared.mainKeyWindow?.makeKeyAndVisible()
+        AppRouter.moveToTabBar(withNavigationController: nil)
     }
 }

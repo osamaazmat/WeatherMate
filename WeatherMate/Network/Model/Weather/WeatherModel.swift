@@ -9,9 +9,12 @@ import Foundation
 
 // MARK: - WeatherModel
 struct WeatherModel: Codable, BaseModelProtocol {
-    
-    func getMock() -> String {
+
+    static func getMockSuccess() -> String {
         return ModelMocks.weatherModel
+    }
+    static func getMockFailure() -> String {
+        return ModelMocks.weatherModelFailure
     }
     
     var coord: Coord?

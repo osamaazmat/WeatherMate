@@ -25,9 +25,9 @@ class HomeViewController: BaseViewController {
     var weatherDataRecieved: Bool = false
     
     // MARK: ViewModel
-    var viewModel: HomeViewModelProtocol! {
+    var viewModel: HomeViewModelProtocol? {
         didSet {
-            viewModel.weatherDidChange = { [unowned self] viewModel in
+            viewModel?.weatherDidChange = { [unowned self] viewModel in
                 DispatchQueue.main.async {
                     if let weatherModel = viewModel.weatherModel {
                         self.setupData(with: weatherModel)
@@ -44,6 +44,11 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppAnalytics.logEvent(withName: AppTriggers.homeScreen)
     }
     
     func configureRefreshControl() {
@@ -138,7 +143,7 @@ extension HomeViewController {
             LoaderManager.instance.show()
         }
         
-        self.viewModel.getWeatherData(with: currentLocation)
+        self.viewModel?.getWeatherData(with: currentLocation)
     }
 }
 

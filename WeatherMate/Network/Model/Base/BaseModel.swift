@@ -8,5 +8,6 @@
 import Foundation
 
 public protocol BaseModelProtocol {
-    func getMock() -> String
+    static func getMockSuccess() -> String
+    static func getMockFailure() -> String
 }

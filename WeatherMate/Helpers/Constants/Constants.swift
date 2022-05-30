@@ -50,3 +50,12 @@ enum AppStrings {
         }
     }
 }
+
+enum AppTriggers {
+    static let appStart = "WM_App_Start"
+    static let loginScreen = "WM_Login_Screen"
+    static let completedLogin = "WM_Completed_Login"
+    static let homeScreen = "WM_Home_Screen"
+    static let forecastScreen = "WM_Forecast_Screen"
+    static let settingsScreen = "WM_Settings_Screen"
+}

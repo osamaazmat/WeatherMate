@@ -2,6 +2,8 @@
 platform :ios, '15.2'
 source 'https://cdn.cocoapods.org/'
 
+inhibit_all_warnings!
+
 target 'WeatherMate' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!

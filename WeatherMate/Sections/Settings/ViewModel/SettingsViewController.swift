@@ -35,6 +35,7 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setupBackgroundImage()
+        AppAnalytics.logEvent(withName: AppTriggers.forecastScreen)
     }
 }
 
@@ -124,9 +125,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 self.viewModel.logout()
                 self.tableView.reloadData()
             } else {
-                let vc = ViewControllerFactory.makeLogin()
-                UIApplication.shared.mainKeyWindow?.rootViewController = vc
-                UIApplication.shared.mainKeyWindow?.makeKeyAndVisible()
+                AppRouter.moveToLogin(withNavigationController: nil)
             }
         }
     }

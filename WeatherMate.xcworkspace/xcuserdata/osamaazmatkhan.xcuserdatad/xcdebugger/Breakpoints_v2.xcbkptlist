@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5E1EC94D-ECF9-4390-A56B-E5BCB33975F6"
+            uuid = "B6F4469E-0401-44CE-BFAA-1869F2277C45"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherMate/Network/Base/Service.swift"
+            filePath = "WeatherMateTests/Tests/Sections/Login/LoginViewControllerTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "execute(_:model:completion:)"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "testLoginAPIFailure()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
