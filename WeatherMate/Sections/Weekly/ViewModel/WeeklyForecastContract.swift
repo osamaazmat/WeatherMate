@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-protocol WeeklyForecastViewModelProtocol: AnyObject {
+protocol WeeklyForecastViewModelProtocol: BaseViewModelProtocol {
     var forecastModel: ForecastModel? { get }
     var forecastDidChange: ((WeeklyForecastViewModelProtocol) -> ())? { get set }
     func getWeeklyWeatherData(with currentLocation: CLLocationCoordinate2D)

@@ -28,7 +28,7 @@ class TabBar: UITabBarController {
         viewControllers = [
             createNavController(for: ViewControllerFactory.makeHome(), title: "Home", image: UIImage(systemName: "house")!),
             createNavController(for: ViewControllerFactory.makeWeeklyForecast(), title: "Weekly", image: UIImage(systemName: "calendar")!),
-            createNavController(for: SettingsViewController(), title: "Settings", image: UIImage(systemName: "gear")!)
+            createNavController(for: ViewControllerFactory.makeSettings(), title: "Settings", image: UIImage(systemName: "gear")!)
         ]
     }
     

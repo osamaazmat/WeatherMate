@@ -10,11 +10,20 @@ import CoreLocation
 
 class SettingsViewController: UIViewController {
 
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImageView: UIImageView!
     
     var currentLocation : CLLocationCoordinate2D!
     
+    // MARK: ViewModel
+    var viewModel: SettingsViewModelProtocol! {
+        didSet {
+            
+        }
+    }
+    
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNotificationObservers()
@@ -29,6 +38,7 @@ class SettingsViewController: UIViewController {
     }
 }
 
+// MARK: Private Methods
 extension SettingsViewController {
     
     private func setupBackgroundImage() {
@@ -46,6 +56,7 @@ extension SettingsViewController {
     }
 }
 
+// MARK: ActionMethods
 extension SettingsViewController {
     
     // MARK: Weather
@@ -54,6 +65,7 @@ extension SettingsViewController {
     }
 }
 
+// MARK: UITableViewDelegate & UITableViewDataSource
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -72,7 +84,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             return ""
         } else {
-            return "Account"
+            return AppStrings.Settings.account
         }
     }
     
@@ -87,7 +99,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             if let user = user {
                 cell.nameLabel.text = user.email
             } else {
-                cell.nameLabel.text = "Hi, Guest!"
+                cell.nameLabel.text = AppStrings.Settings.guestMessage
             }
            
             return cell
@@ -97,9 +109,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             if LoginManager.instance.isUserLoggedIn() {
-                cell.mainLabel.text = "Logout"
+                cell.mainLabel.text = AppStrings.Settings.logout
             } else {
-                cell.mainLabel.text = "Login"
+                cell.mainLabel.text = AppStrings.Settings.login
             }
           
             return cell
@@ -109,11 +121,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if LoginManager.instance.isUserLoggedIn() {
-                LoginManager.instance.logOut()
+                self.viewModel.logout()
                 self.tableView.reloadData()
             } else {
-                let tabBar = LoginViewController()
-                UIApplication.shared.mainKeyWindow?.rootViewController = tabBar
+                let vc = ViewControllerFactory.makeLogin()
+                UIApplication.shared.mainKeyWindow?.rootViewController = vc
                 UIApplication.shared.mainKeyWindow?.makeKeyAndVisible()
             }
         }

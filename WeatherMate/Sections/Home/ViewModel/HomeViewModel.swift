@@ -10,15 +10,21 @@ import CoreLocation
 
 class HomeViewModel: HomeViewModelProtocol {
     
+    // MARK: Protocol Properties
     var weatherModel: WeatherModel? {
         didSet {
             self.weatherDidChange?(self)
         }
     }
     var weatherDidChange: ((HomeViewModelProtocol) -> ())?
+    var networkService: NetworkServiceProtocol
+    required init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
+    }
     
+    // MARK: Protocol Methods
     func getWeatherData(with currentLocation: CLLocationCoordinate2D) {
-        NetworkService.default.execute(WeatherAPIs.getWeatherData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,daily"), model: WeatherModel.self) { [weak self] result in
+        networkService.execute(WeatherAPIs.getWeatherData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,daily"), model: WeatherModel.self) { [weak self] result in
             
             guard let strongSelf = self else {
                 return

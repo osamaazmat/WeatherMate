@@ -31,6 +31,13 @@ enum AppStrings {
         static let dontHaveAnAccount = "Dont have an account? Signup!"
     }
     
+    enum Settings {
+        static let account = "Account"
+        static let login = "Login"
+        static let logout = "Logout"
+        static let guestMessage = "Hi, Guest!"
+    }
+    
     enum Banner {
         enum Title {
             static let error = "Error"

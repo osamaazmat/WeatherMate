@@ -13,18 +13,19 @@ enum NetworkConnnectionError: Error {
     case failedToDecode
 }
 
+public typealias BaseModelCodable = Codable & BaseModelProtocol
+
 public protocol NetworkServiceProtocol: AnyObject {
-    func execute<T: Codable>(_ urlRequest: URLRequestBuilder, model: T.Type, completion: @escaping (Result<T, Error>) -> Void)
+    func execute<T: BaseModelCodable>(_ urlRequest: URLRequestBuilder, model: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol {
     
-    public static let `default`: NetworkServiceProtocol = {
-        var service = NetworkService()
-        return service
-    }()
+    public static let instance: NetworkServiceProtocol = NetworkService()
     
-    func execute<T>(_ urlRequest: URLRequestBuilder, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) where T : Decodable, T : Encodable {
+    private init() {}
+    
+    func execute<T>(_ urlRequest: URLRequestBuilder, model: T.Type, completion: @escaping (Result<T, Error>) -> Void) where T: Decodable, T: Encodable, T: BaseModelProtocol {
         
         if Reachability.isConnectedToNetwork() {
             let request = AF.request(urlRequest)

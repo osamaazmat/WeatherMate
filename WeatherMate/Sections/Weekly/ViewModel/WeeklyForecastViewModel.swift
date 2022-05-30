@@ -9,17 +9,24 @@ import Foundation
 import CoreLocation
 
 class WeeklyForecastViewModel: WeeklyForecastViewModelProtocol {
+    
+    // MARK: Protocol Properties
+    var networkService: NetworkServiceProtocol
     var forecastModel: ForecastModel? {
         didSet {
             self.forecastDidChange?(self)
         }
     }
-    
     var forecastDidChange: ((WeeklyForecastViewModelProtocol) -> ())?
     
+    required init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
+    }
+    
+    // MARK: Protocol Methods
     func getWeeklyWeatherData(with currentLocation: CLLocationCoordinate2D) {
         
-        NetworkService.default.execute(WeatherAPIs.getForecastData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,minutely"), model: ForecastModel.self) { [weak self] result in
+        networkService.execute(WeatherAPIs.getForecastData(lat: currentLocation.latitude.description, lon: currentLocation.longitude.description, exclude: "hourly,minutely"), model: ForecastModel.self) { [weak self] result in
             
             guard let strongSelf = self else {
                 return

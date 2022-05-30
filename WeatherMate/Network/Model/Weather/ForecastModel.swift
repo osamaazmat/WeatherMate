@@ -8,7 +8,12 @@
 import Foundation
 
 // MARK: - ForecastModel
-struct ForecastModel: Codable {
+struct ForecastModel: Codable, BaseModelProtocol {
+    
+    func getMock() -> String {
+        return ModelMocks.forecastModel
+    }
+    
     var lat, lon: Double?
     var timezone: String?
     var timezoneOffset: Double?

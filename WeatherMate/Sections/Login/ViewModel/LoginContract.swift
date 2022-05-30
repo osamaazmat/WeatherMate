@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LoginViewModelProtocol: AnyObject {
+protocol LoginViewModelProtocol: BaseViewModelProtocol {
     var vcTypeDidChange: ((LoginViewControllerType) -> ())? { get set }
     var didReturnError: ((String) -> ())? { get set }
     var loginSignupCompleted: (() -> ())? { get set}

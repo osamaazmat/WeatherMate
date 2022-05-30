@@ -8,7 +8,12 @@
 import Foundation
 
 // MARK: - WeatherModel
-struct WeatherModel: Codable {
+struct WeatherModel: Codable, BaseModelProtocol {
+    
+    func getMock() -> String {
+        return ModelMocks.weatherModel
+    }
+    
     var coord: Coord?
     var weatherData: [WeatherDatum]?
     var base: String?

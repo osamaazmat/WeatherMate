@@ -7,7 +7,7 @@
 import MapKit
 import CoreLocation
 
-protocol LocationUpdateProtocol {
+protocol LocationUpdateProtocol: AnyObject {
     func locationDidUpdateToLocation(_ location : CLLocationCoordinate2D)
 }
 
@@ -17,7 +17,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     static let instance = LocationManager()
     fileprivate var locationManager = CLLocationManager()
     var currentLocation : CLLocationCoordinate2D?
-    var delegate : LocationUpdateProtocol!
+    weak var delegate: LocationUpdateProtocol!
     
     // MARK: LifeCycle
     fileprivate override init () {

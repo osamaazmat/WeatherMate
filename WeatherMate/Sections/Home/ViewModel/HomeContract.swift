@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-protocol HomeViewModelProtocol: AnyObject {
+protocol HomeViewModelProtocol: BaseViewModelProtocol {
     var weatherModel: WeatherModel? { get }
     var weatherDidChange: ((HomeViewModelProtocol) -> ())? { get set }
     func getWeatherData(with currentLocation: CLLocationCoordinate2D)

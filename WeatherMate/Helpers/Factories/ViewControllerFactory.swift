@@ -22,7 +22,7 @@ class ViewControllerFactory: ViewControllerFactoryProtocol {
     }
     
     static func makeLogin() -> LoginViewController {
-        let viewModel = LoginViewModel()
+        let viewModel = LoginViewModel(networkService: NetworkService.instance)
         let view = LoginViewController()
         view.viewModel = viewModel
         
@@ -30,20 +30,23 @@ class ViewControllerFactory: ViewControllerFactoryProtocol {
     }
     
     static func makeHome() -> HomeViewController {
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(networkService: NetworkService.instance)
         let view = HomeViewController()
         view.viewModel = viewModel
         return view
     }
     
     static func makeWeeklyForecast() -> WeeklyForecastViewController {
-        let viewModel = WeeklyForecastViewModel()
+        let viewModel = WeeklyForecastViewModel(networkService: NetworkService.instance)
         let view = WeeklyForecastViewController()
         view.viewModel = viewModel
         return view
     }
     
     static func makeSettings() -> SettingsViewController {
-        return SettingsViewController()
+        let viewModel = SettingsViewModel(networkService: NetworkService.instance)
+        let view = SettingsViewController()
+        view.viewModel = viewModel
+        return view
     }
 }

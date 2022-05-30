@@ -13,6 +13,11 @@ class LoginViewModel: LoginViewModelProtocol {
     var loginSignupCompleted: (() -> ())?
     var vcTypeDidChange: ((LoginViewControllerType) -> ())?
     
+    var networkService: NetworkServiceProtocol
+    required init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
+    }
+    
     func tryAutoLogin() {
         let (isAvailable, email, password) = CacheManager.instance.getSavedLoginData()
         if isAvailable {
